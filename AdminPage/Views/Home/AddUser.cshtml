@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Добавление пользователя</title>
+</head>
+<body>
+    <h3>Введите даннные нового пользователя</h3>
+    @*
+        asp-controller: указывает на контроллер, которому предназначен запрос
+        asp-action: указывает на действие контроллер
+        Смотеть tag-хелперы
+   а*@
+    <form asp-action="AddUser" asp-controller="Home">
+        Имя:
+        <input type="text" name="name" />
+        Фамилия:
+        <input type="text" name="surname" />
+        <input type="submit" value="Отправить" />
+    </form>
+</body>
+</html>
