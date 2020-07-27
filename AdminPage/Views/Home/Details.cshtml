@@ -1,0 +1,27 @@
+﻿@*@model IEnumerable<AdminPage.Models.User>*@
+@model AdminPage.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<h3>Пользователь @Model.name </h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Идентификатор</dt>
+        <dd>@Model.id</dd>
+
+        <dt>Логин</dt>
+        <dd>@Model.login</dd>
+    </dl>
+</div>
+<body>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿
+@model AdminPage.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Редактирование данных</title>
+</head>
+<body>
+    <form asp-action="Edit" asp-controller="Home" asp-route-id="@Model.id">
+
+        <div class="form-group">
+            <label asp-for="name" class="control-label">Имя</label>
+            <input asp-for="name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type ="submit" value="Сохранить" />
+        </div>
+    </form>
+</body>
+</html>

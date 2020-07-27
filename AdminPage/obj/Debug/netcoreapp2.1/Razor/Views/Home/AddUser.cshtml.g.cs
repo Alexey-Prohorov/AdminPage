@@ -62,7 +62,7 @@ using AdminPage;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n\r\n<html>\r\n");
             EndContext();
             BeginContext(58, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52b6cbbb9ae84d5a8631c162aa60f305", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d9f991a938f84afd8f6b97304039daa6", async() => {
                 BeginContext(64, 105, true);
                 WriteLiteral("\r\n    <meta name=\"viewport\" content=\"width=device-width\" />\r\n    <title>Добавление пользователя</title>\r\n");
                 EndContext();
@@ -82,7 +82,7 @@ using AdminPage;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(178, 483, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a666439bf544d93ae72700c4faca650", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7336b17fa44245a8a5a50b7ae47a045c", async() => {
                 BeginContext(184, 52, true);
                 WriteLiteral("\r\n    <h3>Введите даннные нового пользователя</h3>\r\n");
                 EndContext();
@@ -90,7 +90,7 @@ using AdminPage;
                 WriteLiteral("    ");
                 EndContext();
                 BeginContext(418, 234, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "35792802b41f4291b6913ae493d2dfb9", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5efae0ddfe0b43748cc86f888e0bac4e", async() => {
                     BeginContext(467, 178, true);
                     WriteLiteral("\r\n        Имя:\r\n        <input type=\"text\" name=\"name\" />\r\n        Фамилия:\r\n        <input type=\"text\" name=\"surname\" />\r\n        <input type=\"submit\" value=\"Отправить\" />\r\n    ");
                     EndContext();

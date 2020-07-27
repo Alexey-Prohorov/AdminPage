@@ -1,5 +1,7 @@
 ﻿using AdminPage.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
@@ -30,6 +32,38 @@ namespace AdminPage.Controllers
         public async Task<IActionResult> AddUser(User user)
         {
             db.User.Add(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> Details (int? id)
+        {
+            if (id != null)
+            {
+                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
+                    if (user != null)
+                        return View(user);
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id != null)
+            {
+                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
+                if (user != null)
+                    return View(user);
+            }
+            return NotFound();
+        }
+
+        public async Task<ActionResult> Edit(User user)
+        {
+            db.User.Update(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
