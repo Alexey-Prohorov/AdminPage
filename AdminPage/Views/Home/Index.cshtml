@@ -7,23 +7,22 @@
 
 </head>
 <body>
-    <div><a asp-action="AddUser"> Добавить пользователя</a></div>
+    <div>
+        <a asp-action="AddUser"> Добавить пользователя</a>
+    </div>
     <div>
         <h3>Список пользователей</h3>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td> @user.name</td>
-            <td>
-                <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id">Подробнее</a>
-                <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
-                <a asp-action="Delete" asp-controller="Home" asp-route-id=" @user.id">Удалить</a>
-            </td>
-
-
-
-        </tr>
-    }
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td> @user.name</td>
+                <td>
+                    <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id">Подробнее</a>
+                    <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
+                    <a asp-action="Delete" asp-controller="Home" asp-route-id=" @user.id">Удалить</a>
+                </td>
+            </tr>
+        }
     </div>
 </body>
 </html>

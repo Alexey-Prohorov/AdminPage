@@ -31,3 +31,4 @@ C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp2.1\AdminPage
 C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp2.1\Razor\Views\Home\AddUser.cshtml.g.cs
 C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp2.1\Razor\Views\Home\Details.cshtml.g.cs
 C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp2.1\Razor\Views\Home\Edit.cshtml.g.cs
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp2.1\Razor\Views\Home\Delete.cshtml.g.cs

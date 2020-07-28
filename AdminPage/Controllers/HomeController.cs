@@ -67,5 +67,32 @@ namespace AdminPage.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [ActionName ("Delete")]
+        public async Task<ActionResult> ConfirmDelete (int? id)
+        {
+            if (id != null)
+            {
+                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
+                if (user != null)
+                    return View(user);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
+                db.User.Remove(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+
+        }
     }
-}
+ }

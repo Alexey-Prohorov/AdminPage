@@ -1,0 +1,33 @@
+﻿
+@model AdminPage.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Удаление пользователя</title>
+</head>
+<body>
+    <div>
+        <dl>
+            <dt>Имя</dt>
+            <dd>@Model.name</dd>
+            <dt>Id</dt>
+            <dd>@Model.id</dd>
+        </dl>   
+    </div>
+    <div>
+        <form asp-controller="Home" asp-action="Delete" method="post">
+            <input type="submit" value="удалтиь" />
+        </form>
+
+
+    </div>
+
+</body>
+</html>
