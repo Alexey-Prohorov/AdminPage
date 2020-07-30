@@ -16,8 +16,8 @@
     <form asp-action="Edit" asp-controller="Home" asp-route-id="@Model.id">
 
         <div class="form-group">
-            <label asp-for="name">Имя</label>
-            <input asp-for="name"/>
+            <label>Имя</label>
+            <input type="text" name="name"/>
         </div>
         <div class="form-group">
             <input type ="submit" value="Сохранить" />

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace AdminPage
 {
@@ -36,13 +38,13 @@ namespace AdminPage
 
 
             });
+            services.AddRazorPages();
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, /*IHostingEnvironment*/ IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -58,15 +60,26 @@ namespace AdminPage
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            /*app.UseMvc*/
+            app.UseRouting();
+
+            /*  (routes =>
+              {
+                  routes.MapRoute(
+                      name: "default",
+                      template: "{controller=Home}/{action=Index}/{id?}");
+                  routes.MapRoute(
+                      name: "adduser",
+                      template: "{controller=Home/AddUser}/{action=AddUser}/{id?}");
+              });*/
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "adduser",
-                    template: "{controller=Home/AddUser}/{action=AddUser}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

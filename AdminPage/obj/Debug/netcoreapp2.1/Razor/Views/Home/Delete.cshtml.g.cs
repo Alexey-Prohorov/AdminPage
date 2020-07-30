@@ -66,7 +66,7 @@ using AdminPage;
             WriteLiteral("\r\n<!DOCTYPE html>\r\n\r\n<html>\r\n");
             EndContext();
             BeginContext(90, 116, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d768da0ddb88464da5899af9184966e0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "da2798ab7e1e42a28f2c922911d8cf78", async() => {
                 BeginContext(96, 103, true);
                 WriteLiteral("\r\n    <meta name=\"viewport\" content=\"width=device-width\" />\r\n    <title>Удаление пользователя</title>\r\n");
                 EndContext();
@@ -86,7 +86,7 @@ using AdminPage;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(208, 358, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "36482ed4b48d44b7ac0f106d68ded470", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1811f86d305f4234b92a25b5f97c4f9e", async() => {
                 BeginContext(214, 69, true);
                 WriteLiteral("\r\n    <div>\r\n        <dl>\r\n            <dt>Имя</dt>\r\n            <dd>");
                 EndContext();
@@ -111,7 +111,7 @@ using AdminPage;
                 WriteLiteral("</dd>\r\n        </dl>   \r\n    </div>\r\n    <div>\r\n        ");
                 EndContext();
                 BeginContext(407, 132, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2aae4c253c5d42bf9ac0444a4688e872", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29d084950d5f42eabbaffa6d977038b6", async() => {
                     BeginContext(469, 63, true);
                     WriteLiteral("\r\n            <input type=\"submit\" value=\"удалтиь\" />\r\n        ");
                     EndContext();

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
@@ -22,6 +24,19 @@ namespace AdminPage.Controllers
         {
             return View(db.User.ToList());
         }
+
+        public async Task<IActionResult> Index (SortState sortOrder = SortState.NameAsc)
+        {
+            IQueryable<User> user = db.User;
+            ViewData["NameSort"] = sortOrder == SortState.NameAsc ? SortState.NameDesc : SortState.NameAsc;
+            user = sortOrder switch
+            {
+                SortState.NameDesc => user.OrderByDescending(s => s.name),
+                _ => user.OrderBy(s => s.name),
+            };
+            return View(await user.AsNoTracking().ToListAsync());
+        }
+
 
         [HttpGet]
         public IActionResult AddUser()

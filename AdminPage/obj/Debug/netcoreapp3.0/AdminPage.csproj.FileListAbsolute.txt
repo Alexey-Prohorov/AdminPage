@@ -1,0 +1,9 @@
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.csprojAssemblyReference.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.AssemblyInfoInputs.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.AssemblyInfo.cs
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.csproj.CoreCompileInputs.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.TagHelpers.input.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.TagHelpers.output.cache
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.dll
+C:\Users\Alex\source\repos\AdminPage\AdminPage\obj\Debug\netcoreapp3.0\AdminPage.pdb
