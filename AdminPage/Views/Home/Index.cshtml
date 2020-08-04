@@ -1,10 +1,13 @@
-﻿ @model IEnumerable<AdminPage.Models.User>
+﻿@using AdminPage.Models
+@model AdminPage.Models.IndexViewModel
+<!--импортируем tag-хелперы проекта-->
+@addTagHelper *, AdminPage
 
-    <!Doctype html>
+<!Doctype html>
 
 <html>
 <head>
-
+    <link rel="stylesheet" type="text/css" href ="~/css/Style.css" />
 </head>
 <body>
     <div>
@@ -12,19 +15,32 @@
     </div>
     <div>
         <h3>Список пользователей</h3>
-        @foreach (var user in Model)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @user.name
-                </td>
-                <td>
-                    <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id">Подробнее</a>
-                    <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
-                    <a asp-action="Delete" asp-controller="Home" asp-route-id=" @user.id">Удалить</a>
-                </td>
+                @*th - Заголовок cтолбца таблицы*@
+                @*Используется tag-хэлпер SortViewModel находящейся в папке Models*@
+                <th>
+                    <sort-header action="Index" up="@Model.SortViewModel.Up"
+                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.NameSort">
+                        Имя
+                    </sort-header>
+                </th>
             </tr>
-        }
+
+            @foreach (var user in Model.User)
+            {
+
+                <tr>
+                    <td>
+                        @user.name
+                        <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id">Подробнее</a>
+                        <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
+                        <a asp-action="Delete" asp-controller="Home" asp-route-id=" @user.id">Удалить</a>
+                    </td>
+                </tr>
+
+            }
+        </table>
     </div>
 </body>
 </html>

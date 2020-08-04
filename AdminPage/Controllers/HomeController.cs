@@ -20,11 +20,6 @@ namespace AdminPage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View(db.User.ToList());
-        }
-
         public async Task<IActionResult> Index (SortState sortOrder = SortState.NameAsc)
         {
             IQueryable<User> user = db.User;
@@ -34,7 +29,12 @@ namespace AdminPage.Controllers
                 SortState.NameDesc => user.OrderByDescending(s => s.name),
                 _ => user.OrderBy(s => s.name),
             };
-            return View(await user.AsNoTracking().ToListAsync());
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                User = await user.AsNoTracking().ToListAsync(),
+                SortViewModel = new SortViewModel(sortOrder)
+            };
+            return View(viewModel);
         }
 
 
