@@ -1,4 +1,5 @@
-﻿@using AdminPage.Models
+﻿
+@using AdminPage.Models
 @model AdminPage.Models.IndexViewModel
 <!--импортируем tag-хелперы проекта-->
 @addTagHelper *, AdminPage
@@ -7,7 +8,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href ="~/css/Style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/Style.css" />
 </head>
 <body>
     <div>
@@ -15,15 +16,25 @@
     </div>
     <div>
         <h3>Список пользователей</h3>
+        <form method="get">
+            <div>
+                <label>Имя: </label>
+                <input name="name" value="@Model.FilterViewModel.SelectedName" />
+                <input type="submit" value="Фильтр" />
+            </div>
+        </form>
+
+
         <table class="table">
             <tr>
-                @*th - Заголовок cтолбца таблицы*@
-                @*Используется tag-хэлпер SortViewModel находящейся в папке Models*@
+                @*th - Заголовок cтолбца таблицы
+                Используется tag-хэлпер SortViewModel находящейся в папке Models*@
                 <th>
-                    <sort-header action="Index" up="@Model.SortViewModel.Up"
-                                 current="@Model.SortViewModel.Current" property="@Model.SortViewModel.NameSort">
+                    <a asp-action="Index" 
+                       asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                       asp-route-name="@(Model.FilterViewModel.SelectedName)">
                         Имя
-                    </sort-header>
+                    </a>
                 </th>
             </tr>
 
@@ -41,6 +52,9 @@
 
             }
         </table>
+    <page-link page-model="Model.PageViewModel" page-action="Index"
+               page-url-name="@(Model.FilterViewModel.SelectedName)"
+               page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
     </div>
 </body>
 </html>

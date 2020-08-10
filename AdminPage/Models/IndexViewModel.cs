@@ -9,6 +9,9 @@ namespace AdminPage.Models
     {
         public IEnumerable<User> User { get; set; }
         public SortViewModel  SortViewModel { get; set; }
+        public FilterViewModel FilterViewModel { get; set; }
+        public PageViewModel PageViewModel { get; set; }
+        public string Name { get; set; }
 
     }
 }

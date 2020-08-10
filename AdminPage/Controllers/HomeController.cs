@@ -1,8 +1,11 @@
 ﻿using AdminPage.Models;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -20,25 +23,46 @@ namespace AdminPage.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index (SortState sortOrder = SortState.NameAsc)
+        public async Task<IActionResult> Index( string name, int page = 1, SortState sortOrder = SortState.NameAsc)
         {
+            int pageSize =2; //Количество элементов на странице
             IQueryable<User> user = db.User;
+
+
+            //фильтрация
+            if (!String.IsNullOrEmpty(name))
+            {
+                user = user.Where(p => p.name.Contains(name));
+            }
+
+            //сортировка
             ViewData["NameSort"] = sortOrder == SortState.NameAsc ? SortState.NameDesc : SortState.NameAsc;
             user = sortOrder switch
             {
                 SortState.NameDesc => user.OrderByDescending(s => s.name),
                 _ => user.OrderBy(s => s.name),
             };
+
+
+            // пагинация
+            var count = await user.CountAsync();
+            var items = await user.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            // формируем модель представления
             IndexViewModel viewModel = new IndexViewModel
             {
-                User = await user.AsNoTracking().ToListAsync(),
-                SortViewModel = new SortViewModel(sortOrder)
+                PageViewModel = new PageViewModel(count, page, pageSize),
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(name),
+                User = items
             };
+
             return View(viewModel);
         }
 
 
-        [HttpGet]
+
+            [HttpGet]
         public IActionResult AddUser()
         {
             return View();
@@ -76,6 +100,7 @@ namespace AdminPage.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         public async Task<ActionResult> Edit(User user)
         {
             db.User.Update(user);
