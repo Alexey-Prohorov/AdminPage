@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -23,11 +25,10 @@ namespace AdminPage.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index( string name, int page = 1, SortState sortOrder = SortState.NameAsc)
+        public async Task<IActionResult> Index( string name,  int page = 1, int selectKolElementov = 2, SortState sortOrder = SortState.NameAsc)
         {
-            int pageSize =2; //Количество элементов на странице
+            int pageSize = selectKolElementov; //Количество элементов на странице
             IQueryable<User> user = db.User;
-
 
             //фильтрация
             if (!String.IsNullOrEmpty(name))
@@ -43,7 +44,6 @@ namespace AdminPage.Controllers
                 _ => user.OrderBy(s => s.name),
             };
 
-
             // пагинация
             var count = await user.CountAsync();
             var items = await user.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
@@ -54,15 +54,33 @@ namespace AdminPage.Controllers
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortOrder),
                 FilterViewModel = new FilterViewModel(name),
-                User = items
-            };
+                User = items,
+                KolElementov = selectKolElementov,
+
+        };
 
             return View(viewModel);
         }
 
+        [HttpPost]
+        [ActionName("Index")]
+        public async Task<ActionResult> Delete(string [] selectedUsers)
+        {
+            if (selectedUsers.Length > 0)
+            {
+                foreach (string id in selectedUsers)
+                {
+                        User user = await db.User.FirstOrDefaultAsync(p => p.id == Convert.ToInt32(id));
+                        db.User.Remove(user);
+                        await db.SaveChangesAsync();       
+                }
+                return RedirectToAction("Index");
+            }
+            // return View(selectedUsers);
+            return NotFound();
+        }
 
-
-            [HttpGet]
+        [HttpGet]
         public IActionResult AddUser()
         {
             return View();
@@ -70,9 +88,13 @@ namespace AdminPage.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUser(User user)
         {
-            db.User.Add(user);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.User.Add(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(user);
         }
 
 
@@ -106,33 +128,6 @@ namespace AdminPage.Controllers
             db.User.Update(user);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        [ActionName ("Delete")]
-        public async Task<ActionResult> ConfirmDelete (int? id)
-        {
-            if (id != null)
-            {
-                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
-                if (user != null)
-                    return View(user);
-            }
-            return NotFound();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id != null)
-            {
-                User user = await db.User.FirstOrDefaultAsync(p => p.id == id);
-                db.User.Remove(user);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return NotFound();
-
         }
     }
  }

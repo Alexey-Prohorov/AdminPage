@@ -1,4 +1,4 @@
-﻿
+﻿@model AdminPage.Models.User
 @{
     Layout = null;
 }
@@ -13,16 +13,55 @@
 <body>
     <h3>Введите даннные нового пользователя</h3>
     @*
-        asp-controller: указывает на контроллер, которому предназначен запрос
-        asp-action: указывает на действие контроллер
-        Смотеть tag-хелперы
-   а*@
-    <form asp-action="AddUser" asp-controller="Home">
-        Имя:
-        <input type="text" name="name" />
-        Фамилия:
-        <input type="text" name="surname" />
-        <input type="submit" value="Отправить" />
-    </form>
+             asp-controller: указывает на контроллер, которому предназначен запрос
+             asp-action: указывает на действие контроллер
+             Смотеть tag-хелперы
+        а*@
+<form asp-action="AddUser" asp-controller="Home">
+    <div>
+        <label asp-for="name">Имя:</label><br />
+        <input type="text" asp-for="name" />
+        <span asp-validation-for="name"></span>
+    </div>
+    <div>
+        <label asp-for="surname">Фамилия:</label><br />
+        <input type="text" asp-for="surname" />
+        <span asp-validation-for="surname"></span>
+    </div>
+    <div>
+        <label asp-for="patronymic">Отчество:</label><br />
+        <input type="text" asp-for="patronymic" />
+        <span asp-validation-for="patronymic"></span>
+    </div>
+    <div>
+        <label asp-for="login">Логин:</label><br />
+        <input type="text" asp-for="login" />
+        <span asp-validation-for="login"></span>
+    </div>
+    <div>
+        <label asp-for="password">Пароль:</label><br />
+        <input type="text" asp-for="password" />
+        <span asp-validation-for="password"></span>
+    </div>
+    <div>
+        <label asp-for="mail">Почта:</label><br />
+        <input type="text" asp-for="mail" />
+        <span asp-validation-for="mail"></span>
+    </div>
+    <div>
+        <label asp-for="birthday">Дата рождения:</label><br />
+        <input type="text" asp-for="birthday" />
+        <span asp-validation-for="birthday"></span>
+    </div>
+    <div>
+        <label asp-for="sex">Пол:</label><br />
+        <input type="radio" asp-for="sex" value="Мужской" />
+        <span>Мужской</span><br />
+        <input type="radio" asp-for="sex" value="Женский" />
+        <span>Женский</span>
+        <span asp-validation-for="sex"></span>
+    </div>
+    <input type="submit" value="Отправить" />
+</form>
 </body>
 </html>

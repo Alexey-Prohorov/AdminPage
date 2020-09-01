@@ -15,46 +15,69 @@
         <a asp-action="AddUser"> Добавить пользователя</a>
     </div>
     <div>
-        <h3>Список пользователей</h3>
-        <form method="get">
+        <form>
+            <div>
+                <label>Количество элементов: </label>
+                <label name="kolElementov" />
+                <select id=1 asp-controller="Home" asp-action="Index" name="selectKolElementov">
+                    <option value=@(Model.KolElementov)>@(Model.KolElementov)</option>
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
             <div>
                 <label>Имя: </label>
+                <label name="name" />
                 <input name="name" value="@Model.FilterViewModel.SelectedName" />
-                <input type="submit" value="Фильтр" />
             </div>
+            <input type="submit" value="Фильтр" />
+
         </form>
-
-
-        <table class="table">
-            <tr>
-                @*th - Заголовок cтолбца таблицы
-                Используется tag-хэлпер SortViewModel находящейся в папке Models*@
-                <th>
-                    <a asp-action="Index" 
-                       asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                       asp-route-name="@(Model.FilterViewModel.SelectedName)">
-                        Имя
-                    </a>
-                </th>
-            </tr>
-
-            @foreach (var user in Model.User)
-            {
+    </div>
+    <div>
+        <form method="post">
+            <h3>Список пользователей</h3>
+            <table class="table">
 
                 <tr>
-                    <td>
-                        @user.name
-                        <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id">Подробнее</a>
-                        <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
-                        <a asp-action="Delete" asp-controller="Home" asp-route-id=" @user.id">Удалить</a>
-                    </td>
+                    @*th - Заголовок cтолбца таблицы
+                Используется tag-хэлпер SortViewModel находящейся в папке Models*@
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                           asp-route-name="@(Model.FilterViewModel.SelectedName)"
+                           asp-route-selectKolElementov=@(Model.KolElementov)>
+                            Имя
+                        </a>
+                    </th>
                 </tr>
 
-            }
-        </table>
-    <page-link page-model="Model.PageViewModel" page-action="Index"
-               page-url-name="@(Model.FilterViewModel.SelectedName)"
-               page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
+                <div>
+                    @foreach (var user in Model.User)
+                    {
+
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="selectedUsers" value="@user.id">
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-controller="Home" asp-route-id=" @user.id"> @user.name</a>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="Home" asp-route-id=" @user.id">Изменить</a>
+                            </td>
+                        </tr>
+                    }
+                </div>
+
+            </table>
+            <button type="submit">Удалить</button>
+        </form>
+
+        <page-link page-model="Model.PageViewModel" page-action="Index"
+                   page-url-name="@(Model.FilterViewModel.SelectedName)"
+                   page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
     </div>
 </body>
 </html>
