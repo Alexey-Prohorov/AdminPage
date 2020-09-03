@@ -11,8 +11,5 @@ namespace AdminPage.Models
         {
             NameAsc,
             NameDesc,
-            SurnameAsc,
-            SurnameDesc
-
         }
 }

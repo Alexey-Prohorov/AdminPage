@@ -25,11 +25,11 @@ namespace AdminPage.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index( string name,  int page = 1, int selectKolElementov = 2, SortState sortOrder = SortState.NameAsc)
+        public async Task<IActionResult> Index( string name, int kolElementov = 2, int page = 1, SortState sortOrder = SortState.NameAsc)
         {
-            int pageSize = selectKolElementov; //Количество элементов на странице
+            int pageSize = kolElementov; //Количество элементов на странице
             IQueryable<User> user = db.User;
-
+  
             //фильтрация
             if (!String.IsNullOrEmpty(name))
             {
@@ -53,9 +53,8 @@ namespace AdminPage.Controllers
             {
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(name),
+                FilterViewModel = new FilterViewModel(name, kolElementov),
                 User = items,
-                KolElementov = selectKolElementov,
 
         };
 

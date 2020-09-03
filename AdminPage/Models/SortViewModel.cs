@@ -17,7 +17,7 @@ namespace AdminPage.Models
             //значение по умолчанию
             NameSort = SortState.NameAsc;
             Up = true;
-            if (sortOrder == SortState.NameDesc || sortOrder == SortState.SurnameDesc)
+            if (sortOrder == SortState.NameDesc)
                 Up = false;
             switch (sortOrder)
             {
